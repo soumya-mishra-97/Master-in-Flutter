@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_interview_ques/Equtable/equtable.dart';
-
 /*
 Key Differences: Normal create instance vs Singleton instance
 ---------------------------------------------------------------------------------
@@ -63,6 +61,30 @@ class Person{
   }
 }
 
+class Singleton{
+  // Stores the singleton instance
+  static Singleton? _instance;
+  String msg;
+
+  // Private constructor -> external instantiation
+  // No one can create the new instance directly using Singleton() constructor.
+  Singleton._internal(this.msg);
+
+  // Factory constructor -> used to ensure the only one instance is used across the app
+  // if instance = null then create new instances
+  //  if instance != null then return the existing instance
+  factory Singleton({String msg = 'Hello'}){
+    _instance ??= Singleton._internal(msg);
+    return _instance!;
+  }
+
+  // Message print action
+ void printMsg(){
+   debugPrint(msg);
+ }
+}
+
+
 
 void main(){
   /*var a = A(msg: 'Hello');
@@ -80,4 +102,12 @@ void main(){
 
   var p1 = Person.p1();
   p1.info();
+
+  var instance1 = Singleton();
+  var instance2 = Singleton();
+  instance1.printMsg();
+  instance2.printMsg();
+
+  // Same memory object
+  print(identical(instance1, instance2)); // true
 }
