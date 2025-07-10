@@ -7,9 +7,10 @@ void main() {
   Manimal manimal = Manimal();
   manimal.eat();
 
-  C c = C();
-  c.fooA();
-  c.fooB();
+  var objC = C();
+  objC.fooA();
+  objC.fooB();
+  objC.fooC();
 }
 
 class Dog extends Animal with CanBark {
@@ -48,16 +49,27 @@ mixin MixinB {
 
 class Manimal with MixinA, MixinB {}
 
-mixin A {
+mixin A{
+  void fooA(){
+    print("A");
+  }
+}
+mixin B{
+  void fooB(){
+    print("B");
+  }
+}
+
+class C with A, B{
+  @override
   void fooA() {
-    debugPrint("A's fooA");
+    print("Mixin A");
   }
-}
-
-mixin B {
+  @override
   void fooB() {
-    debugPrint("B's fooB");
+    print("Mixin B");
+  }
+  void fooC(){
+    print("C");
   }
 }
-
-class C with A, B {}

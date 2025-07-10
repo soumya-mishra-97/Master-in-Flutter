@@ -72,7 +72,7 @@ class Cat extends Animal {
   Cat(String super.sound);
 }
 
-void main() {
+/*void main() {
   var p1 = Person.p1();
   debugPrint('Name: ${p1.name} & Age: ${p1.age}');
 
@@ -83,4 +83,22 @@ void main() {
 
   var unknown = Animal.create('Unknown');
   unknown.makeSound();
+}*/
+
+/// Factory constructor method (not a singleton)
+class HelloFactory {
+  // Private named constructor
+  HelloFactory._();
+
+  //  Factory constructor method (not a singleton)
+  factory HelloFactory.create(String type) {
+    print('Hello, $type World! from Factory');
+    return HelloFactory._(); // creates a new instance every time
+  }
 }
+
+void main() {
+  HelloFactory.create('Dart');
+}
+
+
