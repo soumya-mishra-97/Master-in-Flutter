@@ -9,7 +9,6 @@ class MyStreamClass extends StatefulWidget {
 }
 
 class _MyStreamClassState extends State<MyStreamClass> {
-
   StreamController<String> streamController = StreamController<String>();
   TextEditingController textEditingController = TextEditingController();
 
@@ -21,6 +20,13 @@ class _MyStreamClassState extends State<MyStreamClass> {
     super.initState();
   }
 
+  Stream<int> getNumbers() async* {
+    for (int i = 1; i <= 5; i++) {
+      await Future.delayed(const Duration(seconds: 1));
+      yield i;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +35,17 @@ class _MyStreamClassState extends State<MyStreamClass> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            StreamBuilder<int>(
+                stream: getNumbers(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasData) {
+                    return Text('${snapshot.error}');
+                  } else {
+                    return Text('Data: ${snapshot.data}');
+                  }
+                }),
             StreamBuilder<String>(
               stream: streamData,
               builder: (context, snapshot) {
@@ -54,7 +71,7 @@ class _MyStreamClassState extends State<MyStreamClass> {
                 } else {
                   return const Text('No Data',
                       style:
-                      TextStyle(fontWeight: FontWeight.w500, fontSize: 24));
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 24));
                 }
               },
             ),

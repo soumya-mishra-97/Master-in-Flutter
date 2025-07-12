@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_interview_ques/Streams/my_stream.dart';
+import 'package:flutter_interview_ques/Stream/my_stream.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_interview_ques/main.dart';
