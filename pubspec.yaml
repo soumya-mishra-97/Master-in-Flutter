@@ -22,3 +22,8 @@ dev_dependencies:
   injectable_generator: ^2.1.6
 flutter:
   uses-material-design: true
+
+fonts:
+  - family: Times
+    fonts:
+      - asset: assets/fonts/times.ttf

@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
 // Stream:
 /// Handles asynchronous data events and  It can emit multiple values over time.
 Stream<int> countStream() async* {

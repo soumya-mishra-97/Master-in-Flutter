@@ -41,22 +41,35 @@ class _MyStreamClassState extends State<MyStreamClass> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const CircularProgressIndicator();
                   } else if (snapshot.hasData) {
-                    return Text('${snapshot.error}');
+                    return Text('${snapshot.error}',
+                        style: const TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16));
                   } else {
-                    return Text('Data: ${snapshot.data}');
+                    return Text('Data: ${snapshot.data}',
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20));
                   }
                 }),
+            const SizedBox(height: 30),
             StreamBuilder<String>(
               stream: streamData,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return Text(snapshot.data ?? 'Null Data',
                       style: const TextStyle(
-                          fontWeight: FontWeight.w500, fontSize: 24));
+                          color: Colors.red,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20));
                 } else {
                   return const Text('No Data',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 24));
+                      style: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20));
                 }
               },
             ),
@@ -67,11 +80,15 @@ class _MyStreamClassState extends State<MyStreamClass> {
                 if (snapshot.hasData) {
                   return Text(snapshot.data ?? 'Null Data',
                       style: const TextStyle(
-                          fontWeight: FontWeight.w500, fontSize: 24));
+                          color: Colors.red,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20));
                 } else {
                   return const Text('No Data',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 24));
+                      style: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20));
                 }
               },
             ),
@@ -80,11 +97,15 @@ class _MyStreamClassState extends State<MyStreamClass> {
                 width: 200,
                 child: TextField(
                   controller: textEditingController,
+                  decoration: const InputDecoration(
+                    labelText: "Enter anything",
+                    border: OutlineInputBorder(),
+                  ),
                 )),
             const SizedBox(height: 20),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Colors.black,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 40, vertical: 15)),
                 onPressed: () {
